@@ -39,8 +39,8 @@ macro_rules! include_asm_macros {
         concat!(
             __asm_macros!(),
             r"
-            .ifndef REGS_MACROS_FLAG
-            .equ REGS_MACROS_FLAG, 1
+            .ifndef .LPUSH_POP_GENERAL_REGS
+            .equ .LPUSH_POP_GENERAL_REGS, 0
 
             .macro PUSH_POP_GENERAL_REGS, op
                 \op ra, sp, 0

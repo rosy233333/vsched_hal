@@ -1,5 +1,6 @@
-use core::arch::naked_asm;
-use memory_addr::{VirtAddr, va};
+// use core::arch::naked_asm;
+use core::arch::global_asm;
+use memory_addr::{va, VirtAddr};
 /// Saved hardware states of a task.
 ///
 /// The context usually includes:
@@ -96,10 +97,33 @@ impl TaskContext {
     }
 }
 
-#[unsafe(naked)]
-unsafe extern "C" fn context_switch(_current_stack: &mut u64, _next_stack: &u64) {
-    naked_asm!(
-        "
+// #[unsafe(naked)]
+// unsafe extern "C" fn context_switch(_current_stack: &mut u64, _next_stack: &u64) {
+//     naked_asm!(
+//         "
+//         .code64
+//         push    rbp
+//         push    rbx
+//         push    r12
+//         push    r13
+//         push    r14
+//         push    r15
+//         mov     [rdi], rsp
+
+//         mov     rsp, [rsi]
+//         pop     r15
+//         pop     r14
+//         pop     r13
+//         pop     r12
+//         pop     rbx
+//         pop     rbp
+//         ret",
+//     )
+// }
+
+global_asm!(
+    "
+    context_switch:
         .code64
         push    rbp
         push    rbx
@@ -117,5 +141,8 @@ unsafe extern "C" fn context_switch(_current_stack: &mut u64, _next_stack: &u64)
         pop     rbx
         pop     rbp
         ret",
-    )
+);
+
+extern "C" {
+    unsafe fn context_switch(_current_stack: &mut u64, _next_stack: &u64);
 }

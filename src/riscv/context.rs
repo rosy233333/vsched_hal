@@ -1,4 +1,5 @@
-use core::arch::naked_asm;
+// use core::arch::naked_asm;
+use core::arch::global_asm;
 use memory_addr::VirtAddr;
 
 /// Saved hardware states of a task.
@@ -77,11 +78,51 @@ impl TaskContext {
     }
 }
 
-#[unsafe(naked)]
-unsafe extern "C" fn context_switch(_current_task: &mut TaskContext, _next_task: &TaskContext) {
-    naked_asm!(
-        include_asm_macros!(),
-        "
+// #[unsafe(naked)]
+// unsafe extern "C" fn context_switch(_current_task: &mut TaskContext, _next_task: &TaskContext) {
+//     naked_asm!(
+//         include_asm_macros!(),
+//         "
+//         // save old context (callee-saved registers)
+//         STR     ra, a0, 0
+//         STR     sp, a0, 1
+//         STR     s0, a0, 2
+//         STR     s1, a0, 3
+//         STR     s2, a0, 4
+//         STR     s3, a0, 5
+//         STR     s4, a0, 6
+//         STR     s5, a0, 7
+//         STR     s6, a0, 8
+//         STR     s7, a0, 9
+//         STR     s8, a0, 10
+//         STR     s9, a0, 11
+//         STR     s10, a0, 12
+//         STR     s11, a0, 13
+
+//         // restore new context
+//         LDR     s11, a1, 13
+//         LDR     s10, a1, 12
+//         LDR     s9, a1, 11
+//         LDR     s8, a1, 10
+//         LDR     s7, a1, 9
+//         LDR     s6, a1, 8
+//         LDR     s5, a1, 7
+//         LDR     s4, a1, 6
+//         LDR     s3, a1, 5
+//         LDR     s2, a1, 4
+//         LDR     s1, a1, 3
+//         LDR     s0, a1, 2
+//         LDR     sp, a1, 1
+//         LDR     ra, a1, 0
+
+//         ret",
+//     )
+// }
+
+global_asm!(
+    include_asm_macros!(),
+    "
+    context_switch:
         // save old context (callee-saved registers)
         STR     ra, a0, 0
         STR     sp, a0, 1
@@ -115,5 +156,8 @@ unsafe extern "C" fn context_switch(_current_task: &mut TaskContext, _next_task:
         LDR     ra, a1, 0
 
         ret",
-    )
+);
+
+unsafe extern "C" {
+    fn context_switch(_current_task: &mut TaskContext, _next_task: &TaskContext);
 }
