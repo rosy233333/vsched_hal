@@ -105,7 +105,7 @@ checksum = "3d4054cba279515fa87761b101d857333ce06391dbe8f18a11347204a7111416"
 [[package]]
 name = "page_table_entry"
 version = "0.1.0"
-source = "git+https://github.com/Starry-Old/page_table_entry.git#8a871b43e07dd3b6da5512528566686e6bc949a9"
+source = "git+https://github.com/rosy233333/page_table_entry.git#16dc9ff22b7695490f2421af7e9d3bf38bb12285"
 dependencies = [
  "aarch64-cpu 9.4.0",
  "bitflags 2.9.4",
