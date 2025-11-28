@@ -143,6 +143,6 @@ global_asm!(
         ret",
 );
 
-extern "C" {
-    unsafe fn context_switch(_current_stack: &mut u64, _next_stack: &u64);
+unsafe extern "C" {
+    fn context_switch(_current_stack: &mut u64, _next_stack: &u64);
 }

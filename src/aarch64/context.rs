@@ -119,6 +119,6 @@ global_asm!(
         ret",
 );
 
-extern "C" {
-    unsafe fn context_switch(_current_task: &mut TaskContext, _next_task: &TaskContext);
+unsafe extern "C" {
+    fn context_switch(_current_task: &mut TaskContext, _next_task: &TaskContext);
 }
