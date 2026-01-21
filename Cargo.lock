@@ -4,20 +4,11 @@ version = 4
 
 [[package]]
 name = "aarch64-cpu"
-version = "9.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac42a04a61c19fc8196dd728022a784baecc5d63d7e256c01ad1b3fbfab26287"
-dependencies = [
- "tock-registers 0.8.1",
-]
-
-[[package]]
-name = "aarch64-cpu"
 version = "10.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a21cd0131c25c438e19cd6a774adf7e3f64f7f4d723022882facc2dee0f8bc9"
 dependencies = [
- "tock-registers 0.9.0",
+ "tock-registers",
 ]
 
 [[package]]
@@ -60,10 +51,10 @@ checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
 name = "hal"
 version = "0.0.0"
 dependencies = [
- "aarch64-cpu 10.0.0",
+ "aarch64-cpu",
  "cfg-if",
  "linkme",
- "memory_addr 0.4.0",
+ "memory_addr",
  "page_table_entry",
  "riscv",
  "static_assertions",
@@ -93,23 +84,19 @@ dependencies = [
 
 [[package]]
 name = "memory_addr"
-version = "0.1.0"
-source = "git+https://github.com/Starry-OS/memory_addr.git#a5be547a3109f114994d005b893f9b19c2616709"
-
-[[package]]
-name = "memory_addr"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d4054cba279515fa87761b101d857333ce06391dbe8f18a11347204a7111416"
 
 [[package]]
 name = "page_table_entry"
-version = "0.1.0"
-source = "git+https://github.com/rosy233333/page_table_entry.git#16dc9ff22b7695490f2421af7e9d3bf38bb12285"
+version = "0.5.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dda9891ec368fda90e4b2cc36592b4881073e25a339fe7e3eddd811f0cf6bf18"
 dependencies = [
- "aarch64-cpu 9.4.0",
+ "aarch64-cpu",
  "bitflags 2.9.4",
- "memory_addr 0.1.0",
+ "memory_addr",
  "x86_64",
 ]
 
@@ -198,12 +185,6 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
-
-[[package]]
-name = "tock-registers"
-version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "696941a0aee7e276a165a978b37918fd5d22c55c3d6bda197813070ca9c0f21c"
 
 [[package]]
 name = "tock-registers"
