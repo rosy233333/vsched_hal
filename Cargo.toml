@@ -1,8 +1,8 @@
 # cargo-features = ["edition2024"]
 
 [package]
-name = "hal"
-version = "0.0.0"
+name = "vsched_hal"
+version = "0.1.0"
 edition = "2021"
 authors = ["Fangliang Zhao <1491657576@qq.com>"]
 license = "GPL-3.0-or-later OR Apache-2.0 OR MulanPSL-2.0"
